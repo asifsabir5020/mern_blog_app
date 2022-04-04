@@ -11,6 +11,7 @@ import { bookRouter } from './routers/book';
 import { postRouter } from "./routers/post";
 import { authRouter } from "./routers/auth";
 import { NotFoundError } from "./utils/errors";
+import { commentRouter } from "./routers/comment";
 
 
 // as this is helpful in development
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use('/api/v1/users', authRouter);
 app.use('/api/v1/books', bookRouter);
 app.use('/api/v1/posts', postRouter);
+app.use('/api/v1/comments', commentRouter);
+
 
 
 //middleware for not found 404

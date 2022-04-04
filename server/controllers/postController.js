@@ -4,7 +4,7 @@ import { checkPermission, isAdmin } from "../utils";
 import { NotFoundError, UnAuthorizedError } from "../utils/errors";
 
 export const findAll = async (req, res) => {
-  const posts = await Post.find();
+  const posts = await Post.find().populate('comments');
   res.status(StatusCodes.OK).json({
     success: true,
     data: posts,

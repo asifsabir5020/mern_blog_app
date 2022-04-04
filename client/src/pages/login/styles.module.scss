@@ -8,10 +8,13 @@
 .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    // align-items: center;
 }
 
-.field {
+.form div {
     margin-bottom: 10px;
+}
+
+.btn {
+    width: 100%;
 }
