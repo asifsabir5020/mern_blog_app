@@ -1,6 +1,6 @@
 import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../../../components/ui/form/button";
 import { InputText } from "../../../../components/ui/form/inputText";
 import { InputTextArea } from "../../../../components/ui/form/inputTextArea";
@@ -12,9 +12,23 @@ import { useValidation } from "./useValidation";
 
 export const PostInput = props => {
     const navigate = useNavigate();
-    const { actions } = useAppContext();
-    const { values, setFieldValue, error, setIsSubmitting, isSubmitting } = useForm();
+    const { postId } = useParams();
+    const { state, actions } = useAppContext();
+    const { post } = state;
+    const { values, setFieldValue, setFieldValues, error, setIsSubmitting, isSubmitting } = useForm();
     const { setDirty, isValid } = error;
+
+    useEffect(() => {
+        if (postId) {
+            const selectedPost = post.list.find(el => el._id === postId);
+            if (selectedPost) {
+                setFieldValues({
+                    title: selectedPost.title,
+                    body: selectedPost.body,
+                });
+            }
+        }
+    }, [postId, post]);
 
     useValidation({ values, error });
 
@@ -25,7 +39,11 @@ export const PostInput = props => {
 
         try {
             setIsSubmitting(true);
-            await axios.post("/posts", values);
+            if(postId) {
+                await axios.put(`/posts/${postId}`, values);
+            }else{
+                await axios.post("/posts", values);
+            }
             setIsSubmitting(false);
             navigate('/dashboard/post')
         } catch (e) {
@@ -36,7 +54,7 @@ export const PostInput = props => {
 
     return (
         <div className={styles.root}>
-            <h2>Create New Post</h2>
+            <h2>{postId ? "Edit Post" : "Create New Post"}</h2>
             <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
                 <InputText
                     className={styles.inputText}

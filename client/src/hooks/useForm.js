@@ -24,15 +24,11 @@ export const useForm = props => {
         });
     }
 
-    const setFieldValues = e => {
-        const inputValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const setFieldValues = formParams => {
         setState(state => {
             return {
                 ...state,
-                values: {
-                    ...state.values,
-                    [e.target.name]: inputValue
-                }
+                values: formParams
             }
         });
     }
@@ -101,6 +97,7 @@ export const useForm = props => {
         formState: state,
         values: state.values,
         setFieldValue,
+        setFieldValues,
         setIsSubmitting,
         isSubmitting: state.isSubmitting
     }

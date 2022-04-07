@@ -1,0 +1,27 @@
+.breadCrumb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.editBtn {
+    color: orange;
+    cursor: pointer;
+}
+.deleteBtn {
+    color: #f38282;
+    cursor: pointer;
+}
+
+.headingSection {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    div:not(:first-child) {
+        margin-left: 10px;
+    }
+}
