@@ -1,3 +1,17 @@
 .wrapper {
+    background: #d5d3d3;
+}
 
+.menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.menuItem {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #a4a3a5;
 }

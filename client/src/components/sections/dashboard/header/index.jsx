@@ -6,8 +6,10 @@ export const Header = props => {
     const navigate = useNavigate();
     return (
         <div className={styles.wrapper}>
-            <div className={styles.logo} onClick={() => navigate('/')}>
-                Logo
+            <div className={styles.logoWrapper} onClick={() => navigate('/')}>
+                <div className={styles.logo} onClick={() => navigate('/')}>
+                    Logo
+                </div>
             </div>
         </div>
     )

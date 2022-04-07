@@ -16,11 +16,16 @@ export const Header = props => {
                         <li><a>About</a></li>
                         <li><a>Blog</a></li>
                         <li><a>Store</a></li>
+                        {isAuthenticatedUser() && (
+                            <li><a onClick={() => {
+                                navigate('/dashboard');
+                            }}>Dashboard</a></li>
+                        )}
                         <li><a onClick={() => {
                             if (isAuthenticatedUser()) {
                                 removeAuthInfoFromLocal();
                                 navigate('/');
-                            }else{
+                            } else {
                                 navigate('/auth/login');
                             }
                         }}>{isAuthenticatedUser() ? 'Logout' : 'Login'}</a></li>

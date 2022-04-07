@@ -1,9 +1,14 @@
 .wrapper {
-    background: #f8f9fa;
-    height: 70px;
+    margin: 0;
+    background: #f8f8f8;
+    height: 80px;
+    border-bottom: 1px solid #d5d3d3;
 }
 
-.logo {
+.logoWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     width: 300px;
     font-weight: 700;
@@ -12,4 +17,5 @@
     letter-spacing: -6px;
     color: orange;
     font-size: 50px;
+    background: #636264;
 }

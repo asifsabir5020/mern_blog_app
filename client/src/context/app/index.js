@@ -40,6 +40,7 @@ export const AppProvider = ({ children }) => {
             const { data } = await axios.post('/users/auth/login', formValues);
             dispatch({ type: actions.APP_LOGIN_SUCCESS, payload: data });
             setAuthInfoAtLocal(data);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
             navigate('/dashboard');
         } catch (e) {
             console.log(e);

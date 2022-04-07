@@ -1,0 +1,24 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form div {
+    margin-bottom: 10px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.inputText {
+    width: 500px
+}
