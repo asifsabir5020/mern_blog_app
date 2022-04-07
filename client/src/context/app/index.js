@@ -23,10 +23,11 @@ export const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
-    const fetchPostList = async () => {
+    const fetchPostList = async (url) => {
         try {
+            const requestURL = url ? url : '/posts';
             dispatch({ type: actions.APP_FETCH_POST_LIST_REQUEST });
-            const { data } = await axios.get('/posts');
+            const { data } = await axios.get(requestURL);
             dispatch({ type: actions.APP_FETCH_POST_LIST_SUCCESS, payload: data });
         } catch (e) {
             console.log(e);
@@ -46,11 +47,18 @@ export const AppProvider = ({ children }) => {
             console.log(e);
             dispatch({ type: actions.APP_LOGIN_ERROR });
         }
-    }   
+    }
+
+    const getUserRole = () => {
+        //TODO: set and get from context state 
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.role || null;
+    };
 
     const appActions = {
         fetchPostList,
-        login
+        login,
+        getUserRole
     };
     return (
         <AppContext.Provider value={{ state, actions: appActions }}>

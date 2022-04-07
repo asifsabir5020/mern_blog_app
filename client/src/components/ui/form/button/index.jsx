@@ -4,13 +4,13 @@ import styles from './styles.module.scss';
 
 
 export const Button = props => {
-    const { name, type, onChange, label, className } = props;
+    const { name, type, label, className, onClick } = props;
     return (
         <div className={styles.root}>
             <button
                 className={classNames(styles.btn, className)}
                 type={type ? type : 'button'}
-                onChange={onChange}
+                onClick={onClick}
             >
                 {label}
             </button>

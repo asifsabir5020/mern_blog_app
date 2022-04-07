@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/form/button";
 import { InputText } from "../../../../components/ui/form/inputText";
 import { InputTextArea } from "../../../../components/ui/form/inputTextArea";
@@ -10,6 +11,7 @@ import { useValidation } from "./useValidation";
 
 
 export const PostInput = props => {
+    const navigate = useNavigate();
     const { actions } = useAppContext();
     const { values, setFieldValue, error, setIsSubmitting, isSubmitting } = useForm();
     const { setDirty, isValid } = error;
@@ -25,6 +27,7 @@ export const PostInput = props => {
             setIsSubmitting(true);
             await axios.post("/posts", values);
             setIsSubmitting(false);
+            navigate('/dashboard/post')
         } catch (e) {
             setIsSubmitting(false);
             console.log(e);
