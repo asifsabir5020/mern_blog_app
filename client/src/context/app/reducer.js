@@ -39,5 +39,19 @@ export default (state, action) => {
                 auth: {...state.auth, loading: false }
             }
         }
+
+        case actions.APP_TOAST_CREATE: {
+            return {
+                ...state,
+                notifications: [...state.notifications, action.payload]
+            }
+        }
+        case actions.APP_TOAST_DELETE: {
+            console.log("payload", action.payload);
+            return {
+                ...state,
+                notifications: [...(state.notifications).filter(item => item.key !== action.payload)]
+            }
+        }
     }
 }

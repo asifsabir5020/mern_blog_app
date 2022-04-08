@@ -4,6 +4,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.scss';
 import { DashboardLayout } from './components/layouts/dashboard';
 import { LandingLayout } from './components/layouts/landing';
+import { Toast } from './components/ui/toast';
 import { useAppContext } from './context/app';
 import { Dashboard } from './pages/dashboard';
 import { Post } from './pages/dashboard/post';
@@ -15,7 +16,7 @@ import { Login } from './pages/login';
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { actions } = useAppContext();
+  const { state, actions } = useAppContext();
   useEffect(() => {
     //TODO: now it executes at every location change, apply check that it should executes only at when required
     if (isDashboard) {
@@ -35,18 +36,21 @@ function App() {
   })();
 
   return (
-    <Routes>
-      <Route path='/auth/login' element={<Login />}></Route>
-      <Route path='/' element={<LandingLayout />}>
-        <Route index element={<Home />} />
-      </Route>
-      <Route path='/dashboard' element={<DashboardLayout />} >
-        <Route index element={<Dashboard />} />
-        <Route path="post" element={<Post />} />
-        <Route path="post/new" element={<PostInput />} />
-        <Route path="post/edit/:postId" element={<PostInput />} />
-      </Route>
-    </Routes>
+    <div className="appWrapper">
+      <Toast notifications={state.notifications} deleteToast={actions.deleteToast} />
+      <Routes>
+        <Route path='/auth/login' element={<Login />}></Route>
+        <Route path='/' element={<LandingLayout />}>
+          <Route index element={<Home />} />
+        </Route>
+        <Route path='/dashboard' element={<DashboardLayout />} >
+          <Route index element={<Dashboard />} />
+          <Route path="post" element={<Post />} />
+          <Route path="post/new" element={<PostInput />} />
+          <Route path="post/edit/:postId" element={<PostInput />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

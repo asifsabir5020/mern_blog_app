@@ -16,7 +16,8 @@ export const initialState = {
         user: {},
         token: null,
         loading: false,
-    }
+    },
+    notifications: []
 };
 
 export const AppProvider = ({ children }) => {
@@ -55,10 +56,20 @@ export const AppProvider = ({ children }) => {
         return user.role || null;
     };
 
+    const createToast = data => {
+        dispatch({ type: actions.APP_TOAST_CREATE, payload: data });
+    }
+
+    const deleteToast = key => {
+        dispatch({ type: actions.APP_TOAST_DELETE, payload: key });
+    }
+
     const appActions = {
         fetchPostList,
         login,
-        getUserRole
+        getUserRole,
+        createToast,
+        deleteToast
     };
     return (
         <AppContext.Provider value={{ state, actions: appActions }}>

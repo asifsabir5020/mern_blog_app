@@ -53,6 +53,16 @@ const columns = props => {
     ]);
 };
 
+const note = [
+    {
+        id: 1,
+        title: 'Success',
+        description: 'This is a success toast component',
+        backgroundColor: '#5cb85c',
+        icon: ''
+    }
+];
+
 export const Post = props => {
     const navigate = useNavigate();
     const { state, actions } = useAppContext();
@@ -74,6 +84,12 @@ export const Post = props => {
                 const postURL = (actions.getUserRole() === 'user') ? '/posts/user' : null;
                 await axios.delete(`/posts/${id}`);
                 actions.fetchPostList(postURL);
+                actions.createToast({
+                    type: 'danger',
+                    description: 'Post is deleted Successfully!',
+                    key: 'post-delete',
+                    autoClose: true,
+                });
             } catch (e) {
                 console.log(e);
             }

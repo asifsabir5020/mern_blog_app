@@ -1,0 +1,78 @@
+.notificationContainer {
+    font-size: 14px;
+    box-sizing: border-box;
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 45%;
+    top: 10px;
+}
+
+.notification {
+    width: 300px;
+    border: 1px solid #fff;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+    background: #5cb85c;
+    color: #fff;
+    font-weight: bold;
+    min-height: 55px;
+    max-height: 100px;
+
+	transition: .3s ease;
+	position: relative;
+	pointer-events: auto;
+	overflow: hidden;
+	box-shadow: 0 0 5px #999;
+	// opacity: .9;
+	background-repeat: no-repeat;
+}
+
+.message {
+    padding: 0 10px;
+}
+
+.cancelBtn {
+    padding: 5px;
+}
+
+.notificationTitle {
+    font-weight: bold;
+}
+
+.notificationMessage {
+    font-weight: bold;
+}
+
+
+
+.topRight {
+    top: 12px;
+    right: 12px;
+    transition: transform .6s ease-in-out;
+    animation: toast-in-right .7s;
+}
+
+.bottomRight {
+    bottom: 12px;
+    right: 12px;
+    transition: transform .6s ease-in-out;
+    animation: toast-in-right .7s;
+}
+
+.topLeft {
+    top: 12px;
+    left: 12px;
+    transition: transform .6s ease-in;
+    animation: toast-in-left .7s;
+}
+
+.bottomLeft {
+    bottom: 12px;
+    left: 12px;
+    transition: transform .6s ease-in;
+    animation: toast-in-left .7s;
+}

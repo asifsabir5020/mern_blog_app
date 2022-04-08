@@ -44,7 +44,7 @@ export const update = async (req, res) => {
     throw new NotFoundError(`No post with id :${id}`);
   }
 
-  if (!checkPermission(userId, id)) {
+  if (!checkPermission(userId, post.user)) {
     throw new UnAuthorizedError();
   }
 

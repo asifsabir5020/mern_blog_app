@@ -41,8 +41,20 @@ export const PostInput = props => {
             setIsSubmitting(true);
             if(postId) {
                 await axios.put(`/posts/${postId}`, values);
+                actions.createToast({
+                    type: 'success',
+                    description: 'Post is updated Successfully!',
+                    key: 'post-update',
+                    autoClose: true,
+                });
             }else{
                 await axios.post("/posts", values);
+                actions.createToast({
+                    type: 'success',
+                    description: 'Post is created Successfully!',
+                    key: 'post-create',
+                    autoClose: true,
+                });
             }
             setIsSubmitting(false);
             navigate('/dashboard/post')
