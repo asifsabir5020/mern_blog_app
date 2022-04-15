@@ -9,6 +9,7 @@ import { useAppContext } from './context/app';
 import { Dashboard } from './pages/dashboard';
 import { Post } from './pages/dashboard/post';
 import { PostInput } from './pages/dashboard/post/form';
+import { NotFound } from './pages/error/notfound';
 import { Home } from './pages/home';
 import { Login } from './pages/login';
 
@@ -48,7 +49,9 @@ function App() {
           <Route path="post" element={<Post />} />
           <Route path="post/new" element={<PostInput />} />
           <Route path="post/edit/:postId" element={<PostInput />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

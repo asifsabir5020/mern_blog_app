@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as actions from './actions';
 
 export default (state, action) => {
@@ -11,7 +12,7 @@ export default (state, action) => {
         case actions.APP_FETCH_POST_LIST_SUCCESS: {
             return {
                 ...state,
-                post: { list: action.payload.data, loading: false }
+                post: { list: action.payload.data.map(el => ({ ...el, createdDataFormatted: moment(el.createdAt).format("YYYY/MM/DD") })), loading: false }
             }
         }
         case actions.APP_FETCH_POST_LIST_ERROR: {

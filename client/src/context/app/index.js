@@ -4,6 +4,7 @@ import axios from 'axios';
 import reducer from './reducer';
 import * as actions from './actions';
 import { setAuthInfoAtLocal } from '../../utils/auth';
+import { handleThrowError } from '../../utils/errors';
 
 const AppContext = createContext();
 
@@ -31,8 +32,8 @@ export const AppProvider = ({ children }) => {
             const { data } = await axios.get(requestURL);
             dispatch({ type: actions.APP_FETCH_POST_LIST_SUCCESS, payload: data });
         } catch (e) {
-            console.log(e);
             dispatch({ type: actions.APP_FETCH_POST_LIST_ERROR });
+            handleThrowError(e);
         }
     }
 
@@ -45,14 +46,15 @@ export const AppProvider = ({ children }) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
             navigate('/dashboard');
         } catch (e) {
-            console.log(e);
             dispatch({ type: actions.APP_LOGIN_ERROR });
+            handleThrowError(e);
         }
     }
 
     const getUserRole = () => {
         //TODO: set and get from context state 
         const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) return null;
         return user.role || null;
     };
 

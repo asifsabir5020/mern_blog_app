@@ -22,12 +22,7 @@ const columns = props => {
         },
         {
             title: 'Created At',
-            key: 'createdAt',
-            width: '10',
-        },
-        {
-            title: 'Updated At',
-            key: 'updatedAt',
+            key: 'createdDataFormatted',
             width: '10',
         },
         {
@@ -53,15 +48,6 @@ const columns = props => {
     ]);
 };
 
-const note = [
-    {
-        id: 1,
-        title: 'Success',
-        description: 'This is a success toast component',
-        backgroundColor: '#5cb85c',
-        icon: ''
-    }
-];
 
 export const Post = props => {
     const navigate = useNavigate();
